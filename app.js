@@ -67,9 +67,18 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function moveDown() {
-        const firstRow = [0, 1, 2, 3, 4, 5, 6, 7];
+        //const firstRow = [0, 1, 2, 3, 4, 5, 6, 7];
         for (i = width; i < (width * width); i++) {
-
+            if (squares[i].style.background === '') {
+                squares[i].style.background = squares[i - width].style.background;
+                squares[i - width].style.background = '';
+            }
+        }
+        for (i = 0; i < width; i++) {
+            if (squares[i].style.background === '') {
+                let randomColor = Math.floor(Math.random() * candyColors.length); //Make a random number between 0 and whatever size the color array is
+                squares[i].style.background = candyColors[randomColor];
+            }
         }
 
     }
@@ -111,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
     }
-    checkRowForThree();
+    //checkRowForThree();
 
     function checkColumnForThree() {
         for (i = 0; i < 48; i++) {
@@ -129,10 +138,11 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
     }
-    checkColumnForThree();
+    //checkColumnForThree();
 
     window.setInterval(function() {
         checkRowForThree();
         checkColumnForThree();
+        moveDown();
     }, 1000 / 10);
 })
