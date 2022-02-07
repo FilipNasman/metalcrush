@@ -140,19 +140,56 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
     //checkColumnForThree();
-    function checkMove(arrMove, notValid, points) {
+    function checkMove(checkCase, points) {
+
+
 
         for (i = 0; i < width * width; i++) {
+            switch (checkCase) {
+                case 'threeRow':
+                    arrCase = [i, i + 1, i + 2];
+                    arrNoGo = [6, 7, 14, 15, 22, 23, 30, 31, 38, 39, 46, 47, 54, 55, 62, 63];
+                    break;
+                case 'threeColumn':
+                    arrCase = [i, i + width, i + width + width];
+                    arrNoGo = [48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63]; // code block                // code block
+                    break;
+                case 'fourRow':
+                    arrCase = [i, i + 1, i + 2, i + 3];
+                    arrNoGo = [5, 6, 7, 13, 14, 15, 21, 22, 23, 29, 30, 31, 37, 38, 39, 45, 46, 47, 53, 54, 55, 61, 62, 63]; // code block
+                    break;
+                case 'fourColumn':
+                    arrCase = [i, i + width, i + width + width, i + width + width + width];
+                    arrNoGo = [40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63]; // code block
+                    break;
+                case 'fiveRow':
+                    arrCase = [i, i + 1, i + 2, i + 3, i + 4];
+                    arrNoGo = [5, 6, 7, 13, 14, 15, 21, 22, 23, 29, 30, 31, 37, 38, 39, 45, 46, 47, 53, 54, 55, 61, 62, 63]; // code block
+                    break;
+                case 'fiveColumn':
+                    arrCase = [i, i + width, i + width + width, i + width + width + width + width];
+                    arrNoGo = [32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63]; // code block
+                    break;
+                case 'pool':
+                    arrCase = [i, i + 1, i + width, i + width + 1];
+                    arrNoGo = [55, 56, 57, 58, 59, 60, 61, 62, 63]; // code block
+                    break;
+                case 'cross':
+                    arrCase = [i, i + width - 1, i + width + 1, i + width + width];
+                    arrNoGo = [47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63]; // code block
+                    break;
+                default:
+                    // code block
+            }
             let decidedColor = squares[i].style.background;
             const isBlank = squares[i].style.background === '';
-            //const notValid = [6, 7, 14, 15, 22, 23, 30, 31, 38, 39, 46, 47, 54, 55];
 
-            if (notValid.includes(i)) continue //This is pretty much a GOTO
+            if (arrNoGo.includes(i)) continue //This is pretty much a GOTO
 
-            if (arrMove.every(index => squares[index].style.background === decidedColor && !isBlank)) {
+            if (arrCase.every(index => squares[index].style.background === decidedColor && !isBlank)) {
                 score += points;
                 document.getElementById('score').innerHTML = score;
-                arrMove.forEach(index => {
+                arrCase.forEach(index => {
                     squares[index].style.background = '';
                 })
             }
@@ -162,11 +199,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     window.setInterval(function() {
-        checkRowForThree();
-        checkColumnForThree();
-        //threeRow = [i, i + width, i + width + width];
-        //threeDont = [6, 7, 14, 15, 22, 23, 30, 31, 38, 39, 46, 47, 54, 55, 62, 63];
-        //checkMove(threeRow, threeDont, 3);
+
+        checkMove('pool', 50);
+        checkMove('cross', 100);
+        checkMove('fourRow', 5);
+        checkMove('fourColumn', 5);
+        checkMove('fiveRow', 10);
+        checkMove('fiveColumn', 10);
+        checkMove('threeRow', 3);
+        checkMove('threeColumn', 3);
         moveDown();
     }, 1000 / 10);
 })
