@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const grid = document.querySelector(".grid");
     let width = 8;
     let squares = []; //all array of squares...
+    let score = 0;
 
     //This is the array of all the possible backgrounds of the square div
     //You can set the cells content to preset CSS colors, hex or rgb colors or even a picture
@@ -63,6 +64,14 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
             squares[squareIdBeingDragged].style.background = colorBeingDragged;
         }
+    }
+
+    function moveDown() {
+        const firstRow = [0, 1, 2, 3, 4, 5, 6, 7];
+        for (i = width; i < (width * width); i++) {
+
+        }
+
     }
 
     function dragOver(e) {
