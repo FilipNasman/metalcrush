@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let squares = []; //all array of squares...
     let score = 0;
 
+
     //This is the array of all the possible backgrounds of the square div
     //You can set the cells content to preset CSS colors, hex or rgb colors or even a picture
     const candyColors = [
