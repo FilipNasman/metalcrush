@@ -103,4 +103,27 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
     checkRowForThree();
+
+    function checkColumnForThree() {
+        for (i = 0; i < 48; i++) {
+            let columnOfThree = [i, i + width, i + width + width];
+            let decidedColor = squares[i].style.background;
+            const isBlank = squares[i].style.background === '';
+            //const notValid=[];
+            //if(notValid.includes(i)) continue;
+            if (columnOfThree.every(index => squares[index].style.background === decidedColor && !isBlank)) {
+                score += 3;
+                document.getElementById('score').innerHTML = score;
+                columnOfThree.forEach(index => {
+                    squares[index].style.background = '';
+                })
+            }
+        }
+    }
+    checkColumnForThree();
+
+    window.setInterval(function() {
+        checkRowForThree();
+        checkColumnForThree();
+    }, 1000 / 10);
 })
