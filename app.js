@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     break;
                 case 'fiveRow':
                     arrCase = [i, i + 1, i + 2, i + 3, i + 4];
-                    arrNoGo = [5, 6, 7, 13, 14, 15, 21, 22, 23, 29, 30, 31, 37, 38, 39, 45, 46, 47, 53, 54, 55, 61, 62, 63]; // code block
+                    arrNoGo = [4, 5, 6, 7, 12, 13, 14, 15, 20, 21, 22, 23, 28, 29, 30, 31, 36, 37, 38, 39, 44, 45, 46, 47, 52, 53, 54, 55, 60, 61, 62, 63]; // code block
                     break;
                 case 'fiveColumn':
                     arrCase = [i, i + width, i + width + width, i + width + width + width + width];
