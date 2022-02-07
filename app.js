@@ -140,10 +140,33 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
     //checkColumnForThree();
+    function checkMove(arrMove, notValid, points) {
+
+        for (i = 0; i < width * width; i++) {
+            let decidedColor = squares[i].style.background;
+            const isBlank = squares[i].style.background === '';
+            //const notValid = [6, 7, 14, 15, 22, 23, 30, 31, 38, 39, 46, 47, 54, 55];
+
+            if (notValid.includes(i)) continue //This is pretty much a GOTO
+
+            if (arrMove.every(index => squares[index].style.background === decidedColor && !isBlank)) {
+                score += points;
+                document.getElementById('score').innerHTML = score;
+                arrMove.forEach(index => {
+                    squares[index].style.background = '';
+                })
+            }
+        }
+    }
+
+
 
     window.setInterval(function() {
         checkRowForThree();
         checkColumnForThree();
+        //threeRow = [i, i + width, i + width + width];
+        //threeDont = [6, 7, 14, 15, 22, 23, 30, 31, 38, 39, 46, 47, 54, 55, 62, 63];
+        //checkMove(threeRow, threeDont, 3);
         moveDown();
     }, 1000 / 10);
 })
